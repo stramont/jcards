@@ -18,12 +18,20 @@ function Login(props) {
                         </label>
                         <label>
                             Password <br></br>
-                            <input class="logininput" type="text" /> <br></br>
+                            <input class="logininput" type="password" /> <br></br>
                         </label>
                         <input class="logininput" id="submit-btn-login" type="submit" value="Sign in" />
                     </form>
                 </div>
 
+            </div>
+            <div id="newuserbox" class="centered">
+                New to jcards?
+                <a id="create_acct_link" href="https://www.google.com/">  Create an account.</a>
+
+            </div>
+            <div id="bottom_info" class="centered">
+                <a href="https://www.google.com/">Contact us</a>
             </div>
         </div>
     );
