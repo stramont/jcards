@@ -1,17 +1,22 @@
-import {React, useState, useEffect} from 'react';
+import React from 'react';
 import './login.css';
 
 
-function Login(props) {
+function Register(props) {
+
 
     return (
         <div class="login">
             <div class="logo centered">
                 <img src="jcards_logo.png" alt="j*cards" width="300" />
             </div>
-            <div id="loginbox" class="centered">
+            <div id="registerbox" class="centered">
                 <div>
                     <form class="loginform" >
+                        <label>
+                            Firstname (feel free to use kana) <br></br>
+                            <input class="logininput" type="text" /> <br></br>
+                        </label>
                         <label>
                             Username <br></br>
                             <input class="logininput" type="text" /> <br></br>
@@ -20,22 +25,19 @@ function Login(props) {
                             Password <br></br>
                             <input class="logininput" type="password" /> <br></br>
                         </label>
-                        <input onClick={props.logInSetter(true)} class="logininput submit-btn-login" type="submit" value="Sign in" />
+                        <label>
+                            Re-type password <br></br>
+                            <input class="logininput" type="password" /> <br></br>
+                        </label>
+                        <input class="logininput submit-btn-login" type="submit" value="Sign up" />
                     </form>
                 </div>
-
-            </div>
-            <div id="newuserbox" class="centered">
-                New to jcards? <span>&nbsp;</span>
-                <button class="link_button" onClick={props.registerFlagSetter(true)}>Create an account.</button>
-
             </div>
             <div class="bottom_info">
                 <a href="https://www.google.com/">Contact us</a>
             </div>
         </div>
     );
-
 }
 
-export default Login;
+export default Register;
