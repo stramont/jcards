@@ -20,10 +20,9 @@ function App() {
 
   return (
   
-          <div>
-            {pageRender()}
-          </div>
-          
+    <div class="home-page">
+      {pageRender()}
+    </div>
   );
     
 }
