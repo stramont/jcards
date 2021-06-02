@@ -15,6 +15,32 @@
     float: left;
 }
 
+.fixed {
+    position: fixed;
+}
+
 .icon {
     display: flex;
+}
+
+.deck {
+    text-align: center;
+    border: 1px solid #e1e4e8;
+    background-color: #f6f8fa;
+    border-radius: 15px;
+    height: 250px;
+    width: 300px;
+    margin: 25px;
+}
+
+.deck:hover {
+    background-color: gold;
+}
+
+.page-content {
+    display: flex;
+    flex-flow: wrap;
+    
+    padding: 25px;
+    padding-left: 100px;
 }

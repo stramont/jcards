@@ -5,9 +5,18 @@ import './Home.css';
 import DeckIcon from "./DeckIcon.js";
 import AccountIcon from "./AccountIcon.js";
 import AboutIcon from "./AboutIcon.js";
+import MyDecks from "./MyDecks.js";
 
 function Home(props) {
     const [collapsed, setCollapsed] = useState(true);
+
+    /*
+    * 0 -> My Decks   
+    * 1 -> Saved Decks
+    * 2 -> Account
+    * 3 -> About
+    */
+    const [currPage, setCurrPage] = useState(0);
 
     /*Mouse leave and enter functions are for collapsable sidebar */
     function handleMouseEnter() {
@@ -18,9 +27,25 @@ function Home(props) {
         setCollapsed(true);
     }
 
+    function displayCurrPage() {
+        if (currPage === 0)
+            return (<MyDecks />);
+        else if (currPage === 1) {
+
+        }
+        else if (currPage === 2) {
+            
+        }
+        else if (currPage === 3) {
+
+        }
+        else
+            console.log("Trouble displaying page: currPage = " + currPage);
+    }
+
     return (
         <div class="full-height">
-            <div onMouseEnter={()=>handleMouseEnter()} onMouseLeave={()=>handleMouseLeave()} id="sidebar" class="full-height row">
+            <div onMouseEnter={()=>handleMouseEnter()} onMouseLeave={()=>handleMouseLeave()} id="sidebar" class="full-height row fixed">
                     <ProSidebar collapsed={collapsed}>
                         <SidebarHeader>
                             <div class="bar-titles">
@@ -31,7 +56,7 @@ function Home(props) {
                             <div>
                                 <Menu iconShape="circle">
                                     <SubMenu title="Decks" icon={<DeckIcon />}>
-                                        <MenuItem>My Decks</MenuItem>
+                                        <MenuItem onClick>My Decks</MenuItem>
                                         <MenuItem>Saved Decks</MenuItem>
                                     </SubMenu>
                                     <MenuItem icon={<AccountIcon />}>Account</MenuItem>
@@ -41,8 +66,8 @@ function Home(props) {
                         </SidebarContent>
                     </ProSidebar>
             </div>
-            <div class="row">
-                page content
+            <div>
+                {displayCurrPage()}
             </div>
         </div>
     );
