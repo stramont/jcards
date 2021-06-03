@@ -5,7 +5,11 @@ import './Home.css';
 import DeckIcon from "./DeckIcon.js";
 import AccountIcon from "./AccountIcon.js";
 import AboutIcon from "./AboutIcon.js";
+
 import MyDecks from "./MyDecks.js";
+import SavedDecks from "./SavedDecks.js";
+import AccountPage from "./AccountPage.js";
+import AboutPage from "./AboutPage.js";
 
 function Home(props) {
     const [collapsed, setCollapsed] = useState(true);
@@ -31,17 +35,18 @@ function Home(props) {
         if (currPage === 0)
             return (<MyDecks />);
         else if (currPage === 1) {
-
+            return (<SavedDecks />);
         }
         else if (currPage === 2) {
-            
+           return (<AccountPage />);
         }
         else if (currPage === 3) {
-
+            return (<AboutPage />);
         }
         else
             console.log("Trouble displaying page: currPage = " + currPage);
     }
+
 
     return (
         <div class="full-height">
@@ -56,11 +61,11 @@ function Home(props) {
                             <div>
                                 <Menu iconShape="circle">
                                     <SubMenu title="Decks" icon={<DeckIcon />}>
-                                        <MenuItem onClick>My Decks</MenuItem>
-                                        <MenuItem>Saved Decks</MenuItem>
+                                        <MenuItem onClick = {() => setCurrPage(0)}>My Decks</MenuItem>
+                                        <MenuItem onClick={() => setCurrPage(1)}>Saved Decks</MenuItem>
                                     </SubMenu>
-                                    <MenuItem icon={<AccountIcon />}>Account</MenuItem>
-                                    <MenuItem icon={<AboutIcon />}>About</MenuItem>
+                                    <MenuItem onClick={() => setCurrPage(2)} icon={<AccountIcon />}>Account</MenuItem>
+                                    <MenuItem onClick={() => setCurrPage(3)} icon={<AboutIcon />}>About</MenuItem>
                                 </Menu>
                             </div>
                         </SidebarContent>

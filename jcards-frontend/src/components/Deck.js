@@ -4,18 +4,66 @@ import "./Home.css";
 function Deck(props) {
     /* Props: 
     * image -> image on deck
-    * created -> date deck was created
     * title -> title given to deck by user
-    * ankiStart -> date anki was started on
+    * created -> date deck was created
+    * anki -> boolean for if anki practice was started
+    * ankiDate -> date anki was started on
     * shareCode -> code used to share deck with others
-    * addDeck -> boolean that determines whether specified deck is the 'add deck' button
     */
 
     const [img, setImg] = useState(0);
 
+    function ankiDateDisplay() {
+        if (props.anki) {
+            return (
+                <p>Anki started: {props.ankiDate.getMonth()+1}/{props.ankiDate.getDate()}/{props.ankiDate.getFullYear()}</p>
+            )
+        }
+    }
+
+    function deckDisplay() {
+        if (props.shareCode === "0") { /*This is the 'add deck' button*/
+            return (
+                <div class="deck-inner">
+                    <img src="add_deck.png" alt="add deck" height="150" width="150"/>
+                    <h1>Add Deck</h1>
+                </div>
+            );
+        }
+        else if (props.shareCode === "1") { /* Enter deck code button */
+            return (
+                <div class="deck-inner">
+                    <img src="share_icon2.png" alt="add deck" height="150" width="150"/>
+                    <h1>Enter Share Code</h1>
+                </div>
+            );
+
+        }
+        else {
+            let img = "";
+
+            if (props.image === "")
+               img = "default_deck.png"
+            else
+                img = props.image;
+
+            return (
+                <div class="deck-inner">
+                    <img class="deck-image" src={img} alt="deck image" height="150" width="150"/>
+                    <div class="deck-inner-text">
+                        <h2>{props.title}</h2>
+                        <p>Created: {props.created.getMonth() + 1}/{props.created.getDate()}/{props.created.getFullYear()}</p>
+                        {ankiDateDisplay()}
+                        <p class="sharecode-p">Share Code: {props.shareCode}</p>
+                    </div>
+                </div>
+            );
+        }
+    }
+
     return (
         <div class="deck">
-                deck
+                {deckDisplay()}
         </div>
     );
 }
