@@ -12,6 +12,7 @@ function Deck(props) {
     */
 
     const [img, setImg] = useState(0);
+    const [pageSetNum, setPageSetNum] = useState(0);
 
     function ankiDateDisplay() {
         if (props.anki) {
@@ -23,6 +24,9 @@ function Deck(props) {
 
     function deckDisplay() {
         if (props.shareCode === "0") { /*This is the 'add deck' button*/
+            if (pageSetNum !== 4)
+                setPageSetNum(4);
+
             return (
                 <div class="deck-inner">
                     <img src="add_deck.png" alt="add deck" height="150" width="150"/>
@@ -31,6 +35,7 @@ function Deck(props) {
             );
         }
         else if (props.shareCode === "1") { /* Enter deck code button */
+
             return (
                 <div class="deck-inner">
                     <img src="share_icon2.png" alt="add deck" height="150" width="150"/>
@@ -40,6 +45,9 @@ function Deck(props) {
 
         }
         else {
+            if (pageSetNum !== 5)
+                setPageSetNum(5);
+
             let img = "";
 
             if (props.image === "")
@@ -62,7 +70,7 @@ function Deck(props) {
     }
 
     return (
-        <div class="deck">
+        <div class="deck" onClick={() => props.pageSetter(pageSetNum)}>
                 {deckDisplay()}
         </div>
     );

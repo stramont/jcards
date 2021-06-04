@@ -77,7 +77,7 @@ function codeGen() {
     return r;
 }
 
-function displayDeck() {
+function displayDeck(props) {
     const displayArr = [];
     tempDeck.forEach(e => displayArr.push(<Deck 
         image = {e.image}
@@ -86,6 +86,7 @@ function displayDeck() {
         anki = {e.anki}
         ankiDate = {e.ankiDate}
         shareCode = {e.shareCode}
+        pageSetter = {props.pageSetter}
     />));
 
     return displayArr;
@@ -95,7 +96,7 @@ function MyDecks(props) {
 
     return (
         <div class="page-content">
-            {displayDeck()}
+            {displayDeck(props)}
         </div>
     );
 
