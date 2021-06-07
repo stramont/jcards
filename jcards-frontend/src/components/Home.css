@@ -78,3 +78,114 @@
     padding: 25px;
     padding-left: 100px;
 }
+
+/*Deck creation*/
+
+.deck-creation-top {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 28px;
+    width: 100%;
+
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.deck-title-input{
+    box-sizing: border-box;
+    width: 400px;
+    height: 40px;
+
+    border-radius: 5px;
+    border: 1px solid #e1e4e8;
+    padding: 5px 12px;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.deck-image-selector {
+    float: right;
+    margin-top: 6px;
+    border-radius: 5px;
+    border: 1px solid #e1e4e8;
+    padding: 10px;
+
+    background-color: gold;
+}
+
+#image-block {
+    float:right;
+    margin-top: -40px;
+}
+
+.image-select-label {
+    font-size: 18px;
+}
+
+.deck-creation-content {
+    width: 100%;
+}
+
+.card-creation-container {
+    border-radius: 5px;
+    border: 4px solid #e1e4e8;
+    width: 80%;
+    margin: auto;
+    display:flex;
+
+    margin-top: 25px;
+    height: 400px;
+}
+
+.template-container {
+    width: 60%;
+    height: 90%;
+    margin: auto;
+    display: flex;
+}
+
+.single-side-template {
+    width: 45%;
+    margin: auto;
+
+    border-radius: 5px;
+    border: 1px solid black;
+    float: right;
+
+    height: 90%;
+
+    font-size: 18px;
+}
+
+.single-side-template h1 {
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+textarea {
+    resize: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.single-side-template form {
+    margin-left: 5px;
+}
+
+.card-input {
+    box-sizing: border-box;
+    width: 80%;
+    height: 30px;
+    margin: auto;
+    font-size: 18px;
+
+    border-radius: 5px;
+    border: 1px solid #e1e4e8;
+}
+
+#delete-card {
+    height: 40px;
+    position: absolute;
+    right: 164px;
+    margin-top: 15px;
+}

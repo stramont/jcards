@@ -22,7 +22,7 @@ function Home(props) {
     * 3 -> About
     * 
     * 4 -> Deck creation
-    * 
+    * 5 -> Deck's home screen
     */
     const [currPage, setCurrPage] = useState(0);
 
