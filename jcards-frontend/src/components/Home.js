@@ -11,6 +11,7 @@ import SavedDecks from "./SavedDecks.js";
 import AccountPage from "./AccountPage.js";
 import AboutPage from "./AboutPage.js";
 import DeckCreation from "./DeckCreation.js";
+import DeckHome from "./DeckHome.js";
 
 function Home(props) {
     const [collapsed, setCollapsed] = useState(true);
@@ -49,6 +50,9 @@ function Home(props) {
         }
         else if (currPage === 4) {
             return (<DeckCreation />);
+        }
+        else if (currPage === 5) {
+            return (<DeckHome />);
         }
         else
             console.log("Trouble displaying page: currPage = " + currPage);

@@ -23,7 +23,7 @@ function DeckCreation(props) {
                 <CardCreation />
             </div>
             <div class="deck-creation-bottom">
-
+                <button class="create-deck-btn">Create Deck!</button>
             </div>
         </div>
     );
