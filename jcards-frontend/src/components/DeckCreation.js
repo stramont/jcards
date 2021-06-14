@@ -1,7 +1,29 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import CardCreation from './CardCreation.js';
+import {createDeck, addToDeck, removeFromDeck, shuffle, flipCards, startAnki} from './deck.mjs';
 
 function DeckCreation(props) {
+
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
+    const [deck, setDeck] = useState(createDeck());
+
+
+    function finalizeDeck() {
+        if (title === "") {
+            alert("Please enter a title");
+        }
+        else if (deck.cards.length === 0) {
+            alert("You have not created any cards yet!"); 
+        }
+        else {
+            deck.title = title;
+
+            props.decks.push(deck);
+            props.pageSetter(0);
+        }
+
+    }
 
     return (
         <div class="page-content">
@@ -9,7 +31,7 @@ function DeckCreation(props) {
                 <form>
                     <label>
                         Enter a title: <br></br>
-                        <input class="deck-title-input" placeholder="Example: 'Chapter 1 nouns'" type="text" />
+                        <input class="deck-title-input" placeholder="Example: 'Chapter 1 nouns'" type="text" value={title} onChange={(e) => setTitle(e.target.value) } />
                     </label>
                     <div id="image-block">
                         <label class="image-select-label">
@@ -20,10 +42,10 @@ function DeckCreation(props) {
                 </form>
             </div>
             <div class="deck-creation-content">
-                <CardCreation />
+                <CardCreation currDeck={deck} />
             </div>
             <div class="deck-creation-bottom">
-                <button class="create-deck-btn">Create Deck!</button>
+                <button onClick={() => finalizeDeck()} class="create-deck-btn">Create Deck!</button>
             </div>
         </div>
     );
