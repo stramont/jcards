@@ -24,14 +24,13 @@ function CardCreation(props) {
     }
 
     function createAndAddCard() {
-        if (engl === "")
-            alert("Please enter an English translation, or explanation");
-        else {
+        //if (engl === "")
+         //   alert("Please enter an English translation, or explanation");
+        //else {
             let card = createCard(engl, notes1, japn, kana, romaji, notes2);
             addToDeck(props.currDeck, card);
-            console.log(props.currDeck);
             clearState();
-        }
+     //   }
     }
 
     return(

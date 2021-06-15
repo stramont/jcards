@@ -12,6 +12,8 @@ import AccountPage from "./AccountPage.js";
 import AboutPage from "./AboutPage.js";
 import DeckCreation from "./DeckCreation.js";
 import DeckHome from "./DeckHome.js";
+import {createDeck, addToDeck, removeFromDeck, shuffle, flipCards, startAnki} from "./deck.mjs";
+import {createTestDeck} from './tests.mjs';
 
 
 const usedCodes = [];
@@ -27,73 +29,24 @@ function codeGen() {
     return r;
 }
 
+
 function getMyDecks() {
     
-    let tempDecks = [
-        {
-            "image": "",
-            "title": "Create a new deck",
-            "created": new Date(),
-            "anki": true,
-            "ankiDate": new Date(),
-            "shareCode": "0"
-        },
-        {
-            "image": "",
-            "title": "Deck 2",
-            "created": new Date(),
-            "anki": false,
-            "ankiDate": new Date(),
-            "shareCode": codeGen()
-        },
-        {
-            "image": "",
-            "title": "Deck 3",
-            "created": new Date(),
-            "anki": true,
-            "ankiDate": new Date(),
-            "shareCode": codeGen()
-        },
-        {
-            "image": "",
-            "title": "Deck 4",
-            "created": new Date(),
-            "anki": false,
-            "ankiDate": new Date(),
-            "shareCode": codeGen()
-        },
-        {
-            "image": "",
-            "title": "Deck 5",
-            "created": new Date(),
-            "anki": true,
-            "ankiDate": new Date(),
-            "shareCode": codeGen()
-        },
-        {
-            "image": "",
-            "title": "Deck 6",
-            "created": new Date(),
-            "anki": true,
-            "ankiDate": new Date(),
-            "shareCode": codeGen()
-        },
-        {
-            "image": "",
-            "title": "Deck 7",
-            "created": new Date(),
-            "anki": true,
-            "ankiDate": new Date(),
-            "shareCode": codeGen()
-        }
+    let createDeckBtn = createDeck();
+    createDeckBtn.shareCode = "0";
+    createDeckBtn.title = "Create a new deck";
+    return [createDeckBtn, createDeck(), createDeck(), createDeck(), createTestDeck("test1", 800)];
 
-    ];
-
-    return tempDecks;
 }
+
+var tempDecks = getMyDecks();
 
 function Home(props) {
     const [collapsed, setCollapsed] = useState(true);
+
+    useEffect(() => {
+        //console.log(currDeck);
+    })
 
     /*
     * 0 -> My Decks   
@@ -105,7 +58,9 @@ function Home(props) {
     * 5 -> Deck's home screen
     */
     const [currPage, setCurrPage] = useState(0);
-    const [myDecks, setMyDecks] = useState(getMyDecks());
+    const [myDecks, setMyDecks] = useState(tempDecks);
+
+    const [currDeck, setCurrDeck] = useState(0);
 
     /*Mouse leave and enter functions are for collapsable sidebar */
     function handleMouseEnter() {
@@ -118,7 +73,7 @@ function Home(props) {
 
     function displayCurrPage() {
         if (currPage === 0)
-            return (<MyDecks pageSetter={(c)=>setCurrPage(c)} decks={myDecks} />);
+            return (<MyDecks pageSetter={(c)=>setCurrPage(c)} decks={myDecks} currDeckSetter = {(d) => setCurrDeck(d)}/>);
         else if (currPage === 1) {
             return (<SavedDecks />);
         }
@@ -132,7 +87,7 @@ function Home(props) {
             return (<DeckCreation pageSetter={(c) => setCurrPage(c)} decks={myDecks} />);
         }
         else if (currPage === 5) {
-            return (<DeckHome />);
+            return (<DeckHome currDeck = {currDeck} />);
         }
         else
             console.log("Trouble displaying page: currPage = " + currPage);

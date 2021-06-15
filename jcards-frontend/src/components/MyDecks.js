@@ -5,15 +5,11 @@ import Deck from "./Deck.js";
 
 
 function displayDeck(props) {
-    const displayArr = [];
+    let displayArr = [];
     props.decks.forEach(e => displayArr.push(<Deck 
-        image = {e.image}
-        title = {e.title}
-        created = {e.created}
-        anki = {e.anki}
-        ankiDate = {e.ankiDate}
-        shareCode = {e.shareCode}
+        deck = {e}
         pageSetter = {props.pageSetter}
+        currDeckSetter = {(d) => props.currDeckSetter(d)}
     />));
 
     return displayArr;

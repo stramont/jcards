@@ -7,6 +7,10 @@
     padding-left: 10px;
 }
 
+#sidebar {
+    z-index: 2;
+}
+
 .full-height {
     height: 100%;
 }
@@ -232,6 +236,8 @@ textarea {
     background-color: #ffffff;
     box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
     border-radius: 0.25em;
+    border: 1px solid gray;
+    position: absolute;
 }
 
 .card-container {

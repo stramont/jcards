@@ -3,27 +3,24 @@ import "./Home.css";
 
 function Deck(props) {
     /* Props: 
-    * image -> image on deck
-    * title -> title given to deck by user
-    * created -> date deck was created
-    * anki -> boolean for if anki practice was started
-    * ankiDate -> date anki was started on
-    * shareCode -> code used to share deck with others
+    * deck -> reference to the deck
+    * pageSetter -> function to lift page state to Home
+    * currDeckSetter -> function to set the global current deck to this deck
     */
 
     const [img, setImg] = useState(0);
     const [pageSetNum, setPageSetNum] = useState(0);
 
     function ankiDateDisplay() {
-        if (props.anki) {
+        if (props.deck.anki) {
             return (
-                <p>Anki started: {props.ankiDate.getMonth()+1}/{props.ankiDate.getDate()}/{props.ankiDate.getFullYear()}</p>
+                <p>Anki started: {props.deck.ankiDate.getMonth()+1}/{props.deck.ankiDate.getDate()}/{props.deck.ankiDate.getFullYear()}</p>
             )
         }
     }
 
     function deckDisplay() {
-        if (props.shareCode === "0") { /*This is the 'add deck' button*/
+        if (props.deck.shareCode === "0") { /*This is the 'add deck' button*/
             if (pageSetNum !== 4)
                 setPageSetNum(4);
 
@@ -34,7 +31,7 @@ function Deck(props) {
                 </div>
             );
         }
-        else if (props.shareCode === "1") { /* Enter deck code button */
+        else if (props.deck.shareCode === "1") { /* Enter deck code button */
 
             return (
                 <div class="deck-inner">
@@ -50,19 +47,19 @@ function Deck(props) {
 
             let img = "";
 
-            if (props.image === "")
+            if (props.deck.image === "")
                img = "default_deck.png"
             else
-                img = props.image;
+                img = props.deck.image;
 
             return (
                 <div class="deck-inner">
                     <img class="deck-image" src={img} alt="deck image" height="150" width="150"/>
                     <div class="deck-inner-text">
-                        <h2>{props.title}</h2>
-                        <p>Created: {props.created.getMonth() + 1}/{props.created.getDate()}/{props.created.getFullYear()}</p>
+                        <h2>{props.deck.title}</h2>
+                        <p>Created: {props.deck.created.getMonth() + 1}/{props.deck.created.getDate()}/{props.deck.created.getFullYear()}</p>
                         {ankiDateDisplay()}
-                        <p class="sharecode-p">Share Code: {props.shareCode}</p>
+                        <p class="sharecode-p">Share Code: {props.deck.shareCode}</p>
                     </div>
                 </div>
             );
@@ -70,7 +67,7 @@ function Deck(props) {
     }
 
     return (
-        <div class="deck" onClick={() => props.pageSetter(pageSetNum)}>
+        <div class="deck" onClick={() => {props.currDeckSetter(props.deck); props.pageSetter(pageSetNum)}}>
                 {deckDisplay()}
         </div>
     );
