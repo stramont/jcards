@@ -13,7 +13,8 @@ import AboutPage from "./AboutPage.js";
 import DeckCreation from "./DeckCreation.js";
 import DeckHome from "./DeckHome.js";
 import {createDeck, addToDeck, removeFromDeck, shuffle, flipCards, startAnki} from "./deck.mjs";
-import {createTestDeck} from './tests.mjs';
+import {createTestDeck, testDeckOne} from './tests.mjs';
+import Practice from './Practice.js';
 
 
 const usedCodes = [];
@@ -35,7 +36,7 @@ function getMyDecks() {
     let createDeckBtn = createDeck();
     createDeckBtn.shareCode = "0";
     createDeckBtn.title = "Create a new deck";
-    return [createDeckBtn, createDeck(), createDeck(), createDeck(), createTestDeck("test1", 800)];
+    return [createDeckBtn, createDeck(), createDeck(), testDeckOne(), createTestDeck("test1", 800)];
 
 }
 
@@ -56,6 +57,7 @@ function Home(props) {
     * 
     * 4 -> Deck creation
     * 5 -> Deck's home screen
+    * 6 -> Deck practice screen
     */
     const [currPage, setCurrPage] = useState(0);
     const [myDecks, setMyDecks] = useState(tempDecks);
@@ -87,7 +89,10 @@ function Home(props) {
             return (<DeckCreation pageSetter={(c) => setCurrPage(c)} decks={myDecks} />);
         }
         else if (currPage === 5) {
-            return (<DeckHome currDeck = {currDeck} />);
+            return (<DeckHome currDeck = {currDeck} pageSetter={(c) => setCurrPage(c)} />);
+        }
+        else if (currPage === 6) {
+            return (<Practice />);
         }
         else
             console.log("Trouble displaying page: currPage = " + currPage);

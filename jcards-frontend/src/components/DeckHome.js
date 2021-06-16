@@ -1,12 +1,14 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import Card from './Card.js';
 
 function DeckHome(props) {
 	/* Props:
 	 * currDeck -> The current deck
-	 * 
+	 * pageSetter -> function that sets current page 
 	 * 
 	 */ 
+
+	const [flipped, setFlipped] = useState(false);
 
 	function displayDeckSpread() {
 		let displayArr = [];
@@ -17,10 +19,14 @@ function DeckHome(props) {
 			spreadLength = props.currDeck.cards.length;
 
 		for (let i = 0; i < spreadLength; i++) {
-			displayArr.push(<Card card={props.currDeck.cards[i]} shift={shift} />);
+			displayArr.push(<Card flipped={flipped} card={props.currDeck.cards[i]} shift={shift} />);
 			shift++;
 		}
 		return displayArr;
+	}
+
+	function flipCards() {
+		setFlipped(!flipped);
 	}
 
 	return(
@@ -33,9 +39,9 @@ function DeckHome(props) {
 					Reviewing: {props.ankiReviewing} <br></br>
 
 				</div>
-				<button class="deck-home-btn flip-cards-btn">Flip Cards</button>
+				<button onClick={() => flipCards()} class="deck-home-btn flip-cards-btn">Flip Cards</button>
 				{displayDeckSpread()}
-				<button class="deck-home-btn practice-cards-btn">Practice</button>
+				<button onClick={() => props.pageSetter(6)}class="deck-home-btn practice-cards-btn">Practice</button>
 				<button class="deck-home-btn start-anki-btn">Start anki study</button>
 				<button class="deck-home-btn resume-anki-btn">Resume anki study</button>
 			</div>
